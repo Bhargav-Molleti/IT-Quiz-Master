@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Master</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="flashcards.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Quiz<span>Master</span></div>
+                   <!-- Pomodoro Timer Container -->
+                <!-- Timer Icon -->
+                <div class="timer-icon" onclick="openTimerModal()">
+                    <i class="fas fa-clock"></i>
+                    <span id="timer-display">25:00</span>
+                </div>
+                 <!-- Timer Modal -->
+                 <div id="timer-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeTimerModal()">&times;</span>
+                        <h2>Pomodoro Timer</h2>
+                        <div class="pomodoro-timer">
+                            <span id="pomodoro-minutes">25</span>:<span id="pomodoro-seconds">00</span>
+                        </div>
+                        <div class="pomodoro-controls">
+                            <button id="pomodoro-start">Start</button>
+                            <button id="pomodoro-pause">Pause</button>
+                            <button id="pomodoro-reset">Reset</button>
+                        </div>
+                        <div class="pomodoro-settings">
+                            <label for="session-time">Session Time (minutes):</label>
+                            <input type="number" id="session-time" value="25" min="1">
+                            <label for="break-time">Break Time (minutes):</label>
+                            <input type="number" id="break-time" value="5" min="1">
+                            <button id="apply-settings">Apply</button>
+                        </div>
+                    </div>
+                </div>
+        <div class="user-info" id="user-info">
+            <div class="user-avatar" id="user-avatar">?</div>
+            <span id="username-display">Guest</span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <a href="#" class="nav-item" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item" data-page="topic-selection">
+                <i class="fas fa-list"></i>
+                <span>Topics</span>
+            </a>
+            <a href="#" class="nav-item" data-page="daily-challenge">
+                <i class="fas fa-calendar-day"></i>
+                <span>Daily Challenge</span>
+            </a>
+            <a href="#" class="nav-item" data-page="ai-help">
+                <i class="fas fa-robot"></i>
+                <span>AI Help</span>
+            </a>
+            <a href="#" class="nav-item" data-page="exam">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Exam</span>
+            </a>
+            <a href="#" class="nav-item" data-page="flashcards">
+                <i class="fas fa-layer-group"></i>
+                <span>Flashcards</span>
+              </a>
+            <a href="#" class="nav-item" data-page="profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <!-- Add this to your sidebar in index.html -->
+            <a href="about.html" class="nav-item" data-page="about" onclick="window.location.href='about.html'; return false;">
+                <i class="fas fa-info-circle"></i>
+                <span>About</span>
+            </a>
+            <a href="#" class="nav-item" id="logout-button">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+        
+        <main class="content">
+            <div id="page-container"></div>
+        </main>
+    </div>
+    
+    <div class="progress-tracker">
+        <div class="circle" style="--progress: 0%">
+            <div class="inner">0%</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>

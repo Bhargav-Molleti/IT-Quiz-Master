@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About QuizMaster</title>
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header styles */
+    .header {
+      background-color: #3498db;
+      padding: 80px 0;
+      text-align: center;
+      background-image: url("/api/placeholder/1920/500");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(52, 152, 219, 0.8);
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .header h1 {
+      font-size: 3.5rem;
+      color: white;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .header p {
+      font-size: 1.25rem;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Navigation */
+    .nav {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #3498db;
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+    }
+    
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: #3498db;
+    }
+    
+    /* Section styles */
+    .section {
+      padding: 80px 0;
+    }
+    
+    .section:nth-child(even) {
+      background-color: #f0f4f8;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      width: 70px;
+      height: 3px;
+      background-color: #3498db;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-header p {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* About section styles */
+    .about-content {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .about-text h3 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    
+    .about-text p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+    
+    /* Features section */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .feature {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .feature:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background-color: #ebf5ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: #3498db;
+      font-size: 1.5rem;
+    }
+    
+    .feature h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .feature p {
+      color: #666;
+      margin-bottom: 0;
+    }
+    
+    /* Team section */
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .team-member {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+    
+    .member-image {
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .member-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .team-member:hover .member-image img {
+      transform: scale(1.1);
+    }
+    
+    .member-info {
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .member-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .member-info p {
+      color: #3498db;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      width: 35px;
+      height: 35px;
+      background-color: #f0f4f8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .social-links a:hover {
+      background-color: #3498db;
+      color: white;
+    }
+    
+    /* Contact section */
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    
+    .contact-info {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .contact-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    
+    .contact-details {
+      margin-bottom: 30px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .contact-icon {
+      color: #3498db;
+      font-size: 1.2rem;
+      margin-right: 15px;
+      margin-top: 3px;
+    }
+    
+    .contact-text h4 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .contact-text p {
+      color: #666;
+    }
+    
+    .contact-form {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .contact-form h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+    
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: #3498db;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #2980b9;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 60px 0 30px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: #fff;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #3498db;
+    }
+    
+    .footer-column p {
+      color: #bdc3c7;
+      margin-bottom: 15px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: #bdc3c7;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: #3498db;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-bottom p {
+      color: #bdc3c7;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .nav-container {
+        flex-direction: column;
+        padding: 15px 0;
+      }
+      
+      .nav-links {
+        margin-top: 15px;
+      }
+      
+      .nav-links li {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      
+      .section {
+        padding: 60px 0;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-container">
+      <a href="quiz_index.html" class="logo">QuizMaster</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="container">
+        <h1>About QuizMaster</h1>
+        <p>Discover the story, mission, and people behind your favorite quiz platform</p>
+      </div>
+    </div>
+  </header>
+  
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Story</h2>
+        <p>Learn about how QuizMaster started and our journey so far</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-image">
+          <img src="./img/group.png" alt="QuizMaster Team">
+        </div>
+        <div class="about-text">
+          <h3>From Passion to Platform</h3>
+          <p>In a world where knowledge is power, Quiz Master emerges as the ultimate platform for learners and trivia enthusiasts alike. Designed to challenge minds and expand horizons, this interactive quiz application offers a diverse range of topics—from science and history to pop culture and technology. Users can test their skills with timed quizzes, daily challenges, and comprehensive exams, all while tracking their progress and competing with friends.</p>
+          <p>Behind the scenes, Quiz Master leverages powerful APIs to fetch dynamic questions, ensuring a fresh and engaging experience every time. The intuitive interface, complete with progress tracking and AI-powered assistance, makes learning both fun and rewarding. Whether preparing for an exam or just looking to sharpen the mind, users can dive into a world of endless questions, detailed feedback, and personalized study paths.</p>
+          <p>As users climb the ranks, they unlock achievements, build daily streaks, and refine their expertise across multiple categories. Quiz Master isn’t just an app—it’s a journey of discovery, where every correct answer unlocks new knowledge and every challenge conquered brings them one step closer to becoming a true Quiz Master. 🚀</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Features</h2>
+        <p>Discover what makes QuizMaster the perfect platform for knowledge enthusiasts</p>
+      </div>
+      
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">D</div>
+          <h3>Diverse Categories</h3>
+          <p>From science and history to pop culture and arts, our quizzes cover a wide range of topics to satisfy all interests and curiosities.</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">L</div>
+          <h3>Difficulty Levels</h3>
+          <p>Choose from easy, medium, or expert difficulty levels to match your knowledge and gradually challenge yourself as you grow.</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">G</div>
+          <h3>Global Leaderboards</h3>
+          <p>Compete with quiz enthusiasts from around the world and climb the ranks to become a QuizMaster legend.</p>
+        </div>
+        
+        <div class="feature">
+          <div class="feature-icon">C</div>
+          <h3>Custom Quizzes</h3>
+          <p>Create your own quizzes to challenge friends or contribute to our growing community of quiz creators.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Team Section -->
+  <section id="team" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Meet Our Team</h2>
+        <p>The dedicated professionals behind QuizMaster</p>
+      </div>
+      
+      <div class="team">
+        <div class="team-member">
+          <div class="member-image">
+            <img src="./img/charan.jpg" alt="Team Member">
+          </div>
+          <div class="member-info">
+            <h3>Charan Yedida</h3>
+            <p>22B91A61G2</p>
+            <div class="social-links">
+              <a href="https://github.com/Charanyedida">G</a>
+              <a href="https://www.linkedin.com/in/charanyedida/">in</a>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+            <div class="member-image">
+              <img src="/api/placeholder/500/500" alt="Team Member">
+            </div>
+            <div class="member-info">
+              <h3>Eedarada Bhavana</h3>
+              <p>23B95A6112</p>
+              <div class="social-links">
+                <a href="#">f</a>
+                <a href="#">in</a>
+              </div>
+            </div>
+          </div>
+        <div class="team-member">
+            <div class="member-image">
+              <img src="/api/placeholder/500/500" alt="Team Member">
+            </div>
+            <div class="member-info">
+              <h3>Molleti Bhargav</h3>
+              <p>23B95A6135</p>
+              <div class="social-links">
+                <a href="#">f</a>
+                <a href="#">in</a>
+              </div>
+            </div>
+          </div>
+        
+        <div class="team-member">
+          <div class="member-image">
+            <img src="/api/placeholder/500/500" alt="Team Member">
+          </div>
+          <div class="member-info">
+            <h3>Siddani Deepak</h3>
+            <p>23B95A6149</p>
+            <div class="social-links">
+              <a href="#">f</a>
+              <a href="#">in</a>
+            </div>
+          </div>
+        </div>
+        
+        
+        
+        
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Contact Us</h2>
+        <p>Get in touch with our team for support, feedback, or partnerships</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Get In Touch</h3>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div class="contact-text">
+                <h4>Address</h4>
+                <p>123 Quiz Street, Knowledge City, QZ 12345</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div class="contact-text">
+                <h4>Phone</h4>
+                <p>+1 (123) 456-7890</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <p>info@quizmaster.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="#">f</a>
+            <a href="#">t</a>
+            <a href="#">in</a>
+            <a href="#">ig</a>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <h3>Send a Message</h3>
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Your Email">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" placeholder="Your Message"></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>About QuizMaster</h3>
+          <p>QuizMaster is the premier destination for quiz enthusiasts looking to test their knowledge, learn new facts, and engage with a community of like-minded learners.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Categories</h3>
+          <ul class="footer-links">
+            <li><a href="#">Science</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Geography</a></li>
+            <li><a href="#">Literature</a></li>
+            <li><a href="#">Pop Culture</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Newsletter</h3>
+          <p>Subscribe to our newsletter to receive updates and new quiz notifications.</p>
+          <form>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Your Email">
+            </div>
+            <button type="submit" class="btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 QuizMaster. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
