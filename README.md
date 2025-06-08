@@ -4,7 +4,7 @@
 
 **Quiz Master** is a dynamic, interactive quiz platform designed to challenge and expand your knowledge across diverse topics—from programming and science to pop culture and history. Leveraging AI assistance and real-time API-driven questions, this app offers an engaging, personalized learning experience.  
 
-🌍 **Live Demo:** [https://charanyedida.github.io/QuizMaster/quiz_index.html]  
+🌍 **Live Demo:** [https://bhargav-molleti.github.io/IT-Quiz-Master/quiz_index.html]  
 
 ---
 
